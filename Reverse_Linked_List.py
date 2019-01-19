@@ -9,6 +9,23 @@ class Solution(object):
         """
         :type head: ListNode
         :rtype: ListNode
+        Approach:
+        Let's do a testcase
+            head = 1->2->3->null, prev = None, current = 1->2->3->null
+        1)
+        while node exists in current,
+            temp = 2->3->null
+            current.next = null
+            prev = 1->null
+            current = 2->3->null
+        prev = 1->null
+        2)
+        while node exists in current,
+            temp = 3->null
+            current.next = 1->null
+            prev = 2->1->null
+            current = 3->null
+        prev = 2->1->null. After the while, prev looks like this 3->2->1->null
         """
         prev = None
         current = head
