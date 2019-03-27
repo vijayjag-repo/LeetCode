@@ -4,10 +4,15 @@ class Solution:
         :type nums: List[int]
         :type target: int
         :rtype: List[int]
-        """
-        for i in range(len(nums)):
-            for j in range(i+1,len(nums)):
-                if((nums[i]+nums[j])==target):
-                    return(i,j)
         
+        Using a hashmap we can do it in O(n) time.
+        """
+        if(len(nums)==1):
+            return(False)
+        new = {}
+        for i in range(len(nums)):
+            if(nums[i] in new):
+                return(new[nums[i]],i)
+            else:
+                new[target-nums[i]] = i
         
