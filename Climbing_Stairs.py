@@ -1,22 +1,14 @@
-data = dict()
-class Solution:
+class Solution(object):
     def climbStairs(self, n):
         """
         :type n: int
         :rtype: int
         """
-       
-        if n in data:
-            return(data[n])
-        if(n==1):
-            data[1] = 1
-            return(1)
-        if(n==2):
-            data[2] = 2
-            return(2)
-        else:
-            result = self.climbStairs(n-1) + self.climbStairs(n-2)
-            data[n] = result
-            return(result)
-        
-        
+        d = dict()
+        d[0] = 1
+        d[1] = 1
+        for i in range(2,n+1):
+            d[i] = d[i-1] + d[i-2]
+            
+        return(d[n])
+            
