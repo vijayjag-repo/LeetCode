@@ -1,17 +1,15 @@
-class Solution:
+class Solution(object):
     def containsDuplicate(self, nums):
         """
         :type nums: List[int]
         :rtype: bool
-        
-        Approach :
-            We get the number of occurences of each element in the array. If count greater than 1, return True
-        
         """
-        n = collections.Counter(nums)
-        print(n)
-        for i,value in enumerate(nums):
-            if(n[value]>1):
+        d = dict()
+        for i in range(len(nums)):
+            if nums[i] in d:
                 return(True)
+                d[nums[i]]+=1
+            else:
+                d[nums[i]]=1
+        
         return(False)
-            
