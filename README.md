@@ -1,3 +1,3 @@
 # LeetCode Solutions to LeetCode Problems in Python
 
-## Arrays
+## 1. Arrays
