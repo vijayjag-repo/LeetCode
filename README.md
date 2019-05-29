@@ -1,5 +1,3 @@
-# LeetCode
+# LeetCode Solutions to LeetCode Problems in Python
 
-Solutions to LeetCode Problems in Python
-
-## Topics
+## Arrays
