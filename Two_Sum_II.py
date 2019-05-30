@@ -7,12 +7,13 @@ class Solution(object):
         """
         i = 0
         j = len(numbers)-1
+        sums = 0
         while(i<j):
-            if(numbers[i]+numbers[j]==target):
+            if(sums==target):
                 return(i+1,j+1)
-            elif(numbers[i]+numbers[j]<target):
+            elif(sums<target):
                 i+=1
-            elif(numbers[i]+numbers[j]>target):
+            elif(sums>target):
                 j-=1
         
  
