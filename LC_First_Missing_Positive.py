@@ -10,11 +10,9 @@ class Solution(object):
         Else,
           we check if 2 is present or not. Else, we check for 3 and so on.
         """
-        if not nums:
-            return(1)
-        i = 1
-        while(i>0):
-            if(i not in nums):
-                return(i)
+        value = 1
+        while(value):
+            if(value not in nums):
+                return(value)
             else:
-                i+=1
+                value+=1
