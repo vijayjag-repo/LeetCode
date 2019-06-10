@@ -4,23 +4,27 @@ class Solution(object):
         :type asteroids: List[int]
         :rtype: List[int]
         """
-        i = 0
-        while(i<len(asteroids)-1):
-            if(asteroids[i+1]<0 and asteroids[i]>abs(asteroids[i+1])):
-                asteroids.pop(i+1)
-            elif(asteroids[i+1]<0 and asteroids[i]>0 and abs(asteroids[i+1])>asteroids[i]):
-                asteroids.pop(i)
-                if(i>0):
-                    i-=1
-            elif(asteroids[i+1]<0 and asteroids[i]>0 and abs(asteroids[i+1])==asteroids[i]):
-                asteroids.pop(i+1)
-                asteroids.pop(i)
-                if(i>0):
-                    i-=1
-            else:
-                i+=1
-                
-            if(len(asteroids)==1):
-                break
-        return(asteroids)
-        
+        stack = []
+        for asteroid in asteroids:
+            if(len(stack) == 0 or asteroid > 0):
+                stack.append(asteroid)
+            elif(asteroid < 0):
+                #While top of the stack is positive.
+                while(len(stack) and stack[-1] > 0):
+                    #Both asteroids are equal, destroy both.
+                    if(stack[-1] == -asteroid): 
+                        stack.pop()
+                        break
+                    #Stack top is smaller, remove the +ve asteroid 
+                    #from the stack and continue the comparison.
+                    elif(stack[-1] < -asteroid):
+                        stack.pop()
+                        continue
+                    #Stack top is larger, -ve asteroid is destroyed.
+                    elif(stack[-1] > -asteroid):
+                        break
+                else:
+                    #-ve asteroid made it all the way to the 
+                    #bottom of the stack and destroyed all asteroids.
+                    stack.append(asteroid)
+        return(stack)
