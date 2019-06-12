@@ -11,21 +11,25 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         
-        Easy hack because you can just perform normal Level Order traversal and reverse the final list but not the right approach.
+        Approach:
+            Same as level order traversal but just that you insert from the end. 
         """
-        levels = []
         if not root:
-            return(levels)
+            return(None)
+        k = 1
+        ans = []
+        level = [root]
+        while(level):
+            current = []
+            child = []
+            for node in level:
+                current.append(node.val)
+                if(node.left):
+                    child.append(node.left)
+                if(node.right):
+                    child.append(node.right)
+            ans.insert(-k,current)
+            k+=1
+            level = child
         
-        def helper(root,level):
-            if(len(levels)==level):
-                levels.append([])
-            
-            levels[level].append(root.val)
-            if(root.left):
-                helper(root.left,level+1)
-            if(root.right):
-                helper(root.right,level+1)
-        
-        helper(root,0)
-        return(levels[::-1])
+        return(ans)
