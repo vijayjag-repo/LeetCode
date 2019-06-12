@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+#       Two Solutions, same as level order traversal.
 class Solution(object):
     def averageOfLevels(self, root):
         """
@@ -31,3 +32,24 @@ class Solution(object):
             avg.append(float(sum(i))/len(i))
         
         return(avg)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+if not root:
+            return(None)
+        
+        ans = []
+        level = [root]
+        while(level):
+            current = []
+            child = []
+            for node in level:
+                current.append(node.val)
+                if(node.left):
+                    child.append(node.left)
+                if(node.right):
+                    child.append(node.right)
+            
+            ans.append(float(sum(current))/len(current)
+            level = child
+        
+        return(ans)
