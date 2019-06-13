@@ -5,10 +5,9 @@ class Solution(object):
         :type S: str
         :rtype: int
         """
+        jewel_collection = collections.Counter(S)
         count = 0
-        b = collections.Counter(S)
-        for i in collections.Counter(J):
-            if(i in b):
-                count+= b[i]
-        return(count)
+        for i in J:
+            count+=jewel_collection[i]
         
+        return(count)
