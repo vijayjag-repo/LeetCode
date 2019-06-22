@@ -10,22 +10,18 @@ class Solution(object):
         :type head: ListNode
         :type n: int
         :rtype: ListNode
-        Example:
-        Given linked list: 1->2->3->4->5, and n = 2.
-        After removing the second node from the end, the linked list becomes 1->2->3->5.
         """
-        fast = slow = head
-        for _ in range(n):
-            fast = fast.next
-            
-        if(not fast):
-            return(head.next)
+        dummy = ListNode(-1)
+        dummy.next = head
+        slow = fast = dummy
         
-        while fast.next:
+        for i in range(n):
+            fast = fast.next
+        
+        while(fast.next):
             fast = fast.next
             slow = slow.next
-        slow.next = slow.next.next
-        return(head)
         
-
-   
+        slow.next = slow.next.next
+        return(dummy.next)
+        
