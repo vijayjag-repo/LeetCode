@@ -22,6 +22,8 @@ class Solution(object):
             odd = odd.next
             even = even.next
         
+        #to link the odd and even togther. Because odd will be 1,3,5 and even will be 2,4. 
+        #So you're pointing the odd.next which is 5.next to this evenhead which is 2. 
         odd.next = evenhead
         return(head)
             
