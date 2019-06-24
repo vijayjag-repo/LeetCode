@@ -4,6 +4,12 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+#   Solution using Stack: 
+#   This is a beautiful way to do. Because, you are keeping only h(height of stack) elements on an average.
+#   Notice that the insert into the stack is always at index 0.
+
+#   Other way to do this without the stack is to perform inorder traversal but you are keeping all the elements,
+#   so it defeats the purpose. However, if you can store all elements, this is also an option.
 
 def helper(stack,root):
     while(root!=None):
