@@ -3,6 +3,9 @@ class Solution(object):
         """
         :type s: str
         :rtype: int
+        Approach:
+        
+        Pure Sliding Window
         """
         chars = set()
         left,right,longest = 0,0,0
