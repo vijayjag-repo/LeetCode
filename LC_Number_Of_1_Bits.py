@@ -22,4 +22,13 @@ class Solution(object):
                 count+=1
             mask = mask<<1
         return(count)
+    
+    _______________________________________________________________
+        
+        sums = 0
+        while(n!=0):
+            sums+=1
+            n&=(n-1)
+        
+        return(sums)
         
