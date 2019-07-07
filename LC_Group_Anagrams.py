@@ -4,16 +4,22 @@ class Solution(object):
         :type strs: List[str]
         :rtype: List[List[str]]
         """
-        if(len(strs)==1):
-            return([strs])
         d = dict()
         for i in strs:
-            new = "".join(sorted(i))
-            if new in d:
-                d[new]+= [i]
+            key = ''.join(sorted(i))
+            if key in d:
+                d.get(key).append(i)
             else:
-                d[new] = [i]
-        return(d.values())
-            
+                d[key] = [i]
+        return d.values()
+--------------------------------------------------------------
+# time = O(NK)
+ans = collections.defaultdict(list)
+for s in strs:
+    count = [0]*26
+    for c in s:
+        count[ord(c)-ord('a')]+=1
+    ans[tuple(count)].append(s)
+return(ans.values())
         
         
