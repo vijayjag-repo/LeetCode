@@ -18,6 +18,6 @@ class Solution(object):
         root.left = root.right
         root.right = default
         
-        self.root = self.invertTree(root.left)
-        self.root = self.invertTree(root.right)
+        self.invertTree(root.left)
+        self.invertTree(root.right)
         return(root)
