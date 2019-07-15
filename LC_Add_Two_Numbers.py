@@ -10,35 +10,23 @@ class Solution(object):
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
-        Not the ideal solution but one of the ways to solve it is by using conversion from str to int and int to str.
-        Ideal methods will have a faster runtime
-        
         Approach:
-        Scan each element of the linkedlists and append it to a string.
-        Reverse both the strings.
-        Convert both the strings into integers and add it together and convert it back into string.
-        Reverse the string.
-        Now add each value from this string as an integer in a list and return it.
+        
+        As long as l1,l2 and carry exists, keep adding and simultaneously find the carry to be added next time.
         
         """
-        number = []
-        a = ""
-        b = ""
-        while(l1):
-            a = a + str(l1.val)
-            l1 = l1.next
-        while(l2):
-            b = b + str(l2.val)
-            l2 = l2.next
-        
-        a = a[::-1]
-        b = b[::-1]
-        
-        a = str(int(a) + int(b))
-        a = a[::-1]
-        for i in a:
-            number.append(int(i))
-        return(number)
-        
-        
-        
+        curr = dummy = ListNode(-1)
+        carry = 0
+        while(l1 or l2 or carry):
+            if(l1):
+                carry+=l1.val
+                l1 = l1.next
+            if(l2):
+                carry+=l2.val
+                l2 = l2.next
+            
+            curr.next = ListNode(carry%10)
+            curr = curr.next
+            carry/=10
+            
+        return(dummy.next)
