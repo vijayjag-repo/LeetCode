@@ -11,28 +11,29 @@ class Solution(object):
         :type root: TreeNode
         :type k: int
         :rtype: bool
+        
+        Approach:
+        
+        Instead of storing the entire tree into a list and then checking for two sum, we can process it just like a list.
+        If root.val not there in dict, store its counter value. 
+        Recursively go left and right. 
+        
         """
-        new = []
-        def helper(root):
-            if(root!=None):
-                helper(root.left)
-                new.append(root.val)
-                helper(root.right)
+        d = dict()
+     
+        def helper(root,k):
+            if not root:
+                return
+            else:
+                if(root.val in d):
+                    return(True)
+                d[k-root.val] = 1
                 
-        helper(root)
-        i = 0
-        j = len(new)-1
-        sums = 0
-        while(i<j):
-            sums = new[i]+new[j]
-            if(sums==k):
-                return(True)
-            elif(sums>k):
-                j-=1
-            elif(sums<k):
-                i+=1
+                if(True==helper(root.left,k)):
+                    return(True)
+                if(True==helper(root.right,k)):
+                    return(True)
+                
+        return(helper(root,k))
         
-        return(False)
-        
-            
-        
+                
