@@ -20,6 +20,8 @@ class Solution(object):
                 nums1[p] = nums1[p1]
                 p1-=1
                 p-=1
-    
+        # Incase all the elements of nums1 are greater than nums2, the nums1 array will have only nums1 elements in the end.
+        # So, we just have to put the elements present in nums2 to nums1.
+        # In other words, all elements of nums2 are lesser than the least element of nums1. So we put nums2 infront of the nums1 elements.
         nums1[:p2+1] = nums2[:p2+1]
         
