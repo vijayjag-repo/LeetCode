@@ -10,18 +10,17 @@ class Solution(object):
         """
         :type root: TreeNode
         :rtype: int
+        
+        Approach:
+        
+        Crucial point is that, if left is present and right is not present, you gotta consider the left and not the right.
+        Draw the tree and you'll understand why.
+        
         """
-      
         if not root:
             return(0)
-        if(root.left==None or root.right==None):
-            left = self.minDepth(root.left)
-            right = self.minDepth(root.right)
-            return(left+right+1)
+        elif(not root.left or not root.right):
+            return(max(self.minDepth(root.left),self.minDepth(root.right))+1)
         else:
-            left = self.minDepth(root.left)
-            right = self.minDepth(root.right)
-            return(min(left,right)+1)
+            return(min(self.minDepth(root.left),self.minDepth(root.right))+1)
             
-        
-        
