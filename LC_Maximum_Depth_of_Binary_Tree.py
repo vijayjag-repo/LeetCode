@@ -1,4 +1,4 @@
-# Recursive, BFS(Queue) and Stack approach
+# Recursive, BFS(Queue) and Stack approaches
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
