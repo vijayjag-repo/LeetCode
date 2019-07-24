@@ -5,29 +5,27 @@
 #         self.left = None
 #         self.right = None
 
-# Use height method to find the height/depth of the subtrees. Similar to maximum Depth problem.
-# Since we are comparing the subtrees of each node, you find out the respective heights of subtrees for each node.
-# If both the subtrees obey the rule, return True, else return False
-
 class Solution(object):
     def isBalanced(self, root):
         """
         :type root: TreeNode
         :rtype: bool
-        """
-        if not root:
-            return(True)
-        else:
-            l = self.height(root.left)
-            r = self.height(root.right)
-            if(abs(l-r)>1):
-                return(False)
-            return(self.isBalanced(root.left) and self.isBalanced(root.right))
+        Approach:
         
-    def height(self,root):
-        if not root:
-            return(0)
-        else:
-            left = self.height(root.left)
-            right = self.height(root.right)
-            return(max(left,right)+1)
+        Find depth recursively.
+        Store the max_difference between depths of left and right subtrees. 
+        If this value is greater than 1, it is not balanced. Else, balanced.
+        """
+        
+        self.max_difference = 0
+        def helper(root):
+            if not root:
+                return(0)
+            else:
+                left = helper(root.left)
+                right = helper(root.right)
+                self.max_difference = max(self.max_difference,abs(left-right))
+                return(1+max(left,right))
+        
+        helper(root)
+        return(False if self.max_difference>1 else True)
