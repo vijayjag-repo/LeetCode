@@ -26,3 +26,32 @@ class Solution(object):
                 return(self.hasPathSum(root.left,sum-root.val) or self.hasPathSum(root.right,sum-root.val))
         
         return(helper(root,sum))
+    
+# DFS - Stack based approach
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def hasPathSum(self, root, sums):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: bool
+     
+        """
+        if not root:
+            return(False)
+        stack = [(root,[root.val])]
+        while(stack):
+            curr,total = stack.pop()
+            if(not curr.left and not curr.right and sum(total)==sums):
+                return(True)
+            if(curr.left):
+                stack.append((curr.left,total+[curr.left.val]))
+            if(curr.right):
+                stack.append((curr.right,total+[curr.right.val]))
+        return(False)
