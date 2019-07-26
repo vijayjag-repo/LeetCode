@@ -25,3 +25,22 @@ class Solution(object):
                 result.append(nums[q[0]])
             
         return(result)
+
+# Naive Approach
+
+class Solution(object):
+    def maxSlidingWindow(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        if not nums:
+            return([])
+        i = 0
+        ans = []
+        while(i<k and k<=len(nums)):
+            ans.append(max(nums[i:k]))
+            i+=1
+            k+=1
+        return(ans)
