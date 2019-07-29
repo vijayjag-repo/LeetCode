@@ -3,6 +3,15 @@ class Solution(object):
         """
         :type digits: str
         :rtype: List[str]
+        
+        Approach:
+        
+        At every single step you have to take a decision. A decision tree would be the best approach.
+        First, you choose '2' -> you choose 'a' and then you go on to '3' -> choose 'd'.
+        Then you exhaust all the possible choices in '3' because '3' is the last digit present.
+        i.e: 'ad','ae','af' -> 'b' -> 'bd','be','bf' -> 'c' and so on.
+        Pretty intuitive if you draw the tree
+        
         """
         output = []
         phone = {'2': ['a', 'b', 'c'],
