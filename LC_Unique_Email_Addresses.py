@@ -3,17 +3,20 @@ class Solution(object):
         """
         :type emails: List[str]
         :rtype: int
+        
+        Approach:
+        
+        Split into local and domain.
+        Process accordingly
         """
         new = set()
-        for i in emails:
-            local,domain = i.split('@')
-            if '+' in local:
+        for email in emails:
+            local,domain = email.split('@')
+            if('+' in local):
                 local = local[:local.index('+')]
+            if('.' in local):
                 local = local.replace('.','')
-                new.add(local + '@' + domain)
+            new.add(local+'@'+domain)
         return(len(new))
                 
-                
-            
-            
             
