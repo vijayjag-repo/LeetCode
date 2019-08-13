@@ -18,26 +18,18 @@ class Solution(object):
         return -1.
         
         """
-
+        if not nums2 or not nums1:
+                    return([])
         stack = []
-        ans = []
         d = dict()
         
-        def peek(stack):
-            if(len(stack)==0):
-                return([])
-            else:
-                return(stack[-1])
-            
         for i in range(len(nums2)):
-            while(nums2[i]>peek(stack) and len(stack)>0):
+            while(stack and nums2[i]>stack[-1]):
                 d[stack.pop()] = nums2[i]
+            
             stack.append(nums2[i])
         
-        for i in nums1:
-            ans.append(d.get(i,-1))
-        
-        return(ans)
+        return([d.get(item,-1) for item in nums1])
             
                 
                 
