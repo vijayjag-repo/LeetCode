@@ -5,20 +5,16 @@ class Solution(object):
         :rtype: str
         
         Approach:
-        If entering element is same as top, remove from stack. Else, keep adding. 
+        
+        Same as valid parentheses.
         """
-        i = 0
+        if not S:
+            return("")
         stack = []
-        while(i<len(S)):
-            if(not stack or S[i]!=stack[-1]):
-                stack.append(S[i])
-            else:
+        for item in S:
+            if(stack and item==stack[-1]):
                 stack.pop()
-            i+=1
+            else:
+                stack.append(item)
         
         return("".join(stack))
-                
-                
-       
-        
-                
