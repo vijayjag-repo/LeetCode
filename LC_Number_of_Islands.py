@@ -4,6 +4,7 @@ class Solution(object):
         :type grid: List[List[str]]
         :rtype: int
         Approach:
+        DFS
         First, we search for '1' in the grid. 
         Second, we call a method to change this '1' to '0. Also, we check for the neigboring '1's(only vertical and
         horizontal neighbors) and set their value to '0'(connected components form an island).
@@ -27,8 +28,37 @@ class Solution(object):
 
         count = [dfs(i,j) for i in range(len(grid)) for j in range(len(grid[i])) if grid[i][j]=='1']
         return(sum(count))
-
-
+# BFS Approach
+class Solution(object):
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        if not grid:
+            return(0)
+        def valid(i,j):
+            if(i<0 or i>=len(grid) or j<0 or j>=len(grid[0]) or grid[i][j]=='0'):
+                return(False)
+            return(True)
+        
+        def bfs(i,j):
+            queue = collections.deque()
+            queue.append((i,j))
+            directions = [(0,-1),(-1,0),(0,1),(1,0)]
+            grid[i][j] = '0'
+            while(queue):
+                x,y = queue.popleft()
+                for d in directions:
+                    nx,ny = x + d[0],y + d[1]
+                    if(valid(nx,ny)):
+                        queue.append((nx,ny))
+                        grid[nx][ny]='0'
+            return(1)
+                                
+        ans=[bfs(i,j) for i in range(len(grid)) for j in range(len(grid[0])) if grid[i][j]=='1']
+        return(sum(ans))
+            
 
         
     
