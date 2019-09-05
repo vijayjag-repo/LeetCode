@@ -5,21 +5,23 @@ class Solution(object):
         :type s: List[int]
         :rtype: int
         """
-    
-        if(len(s)==0 or len(g)==0):
+        if not g or not s:
             return(0)
+        
+        pt1 = len(g)-1
+        pt2 = len(s)-1
         g.sort()
         s.sort()
-        j = 0
+        
         count = 0
-        for i in range(len(g)):
-            while(j<len(s)):
-                if(g[i]<=s[j]):
-                    j+=1
-                    count+=1
-                    break
-                else:
-                    j+=1
+        while(pt1>=0 and pt2>=0):
+            if(g[pt1]<=s[pt2]):
+                count+=1
+                pt1-=1
+                pt2-=1
+            elif(g[pt1]>s[pt2]):
+                pt1-=1
         
         return(count)
-                    
+                
+                
