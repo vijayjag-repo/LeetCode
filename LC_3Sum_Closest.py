@@ -5,21 +5,24 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        if(len(nums)<3):
-            return([])
         nums.sort()
-        final = nums[0] + nums[1] + nums[2]
-        for index,val in enumerate(nums):
-            i,j = index+1,len(nums)-1
-            while(i<j):
-                sums = val + nums[i] + nums[j]
+        sums = 0
+        close = float('inf')
+        ans = 0
+        
+        for i,val in enumerate(nums):
+            l,r = i+1,len(nums)-1
+            while(l<r):
+                sums = val + nums[l] + nums[r]
                 if(sums==target):
                     return(sums)
-                elif(abs(target-sums)<abs(target-final)):
-                    final = sums
-                elif(sums>target):
-                    j-=1
                 elif(sums<target):
-                    i+=1
-        return(final)
-        
+                    l+=1 
+                else:
+                    r-=1
+                    
+                if(abs(sums-target)<close):
+                    close = abs(sums-target)
+                    ans = sums
+        return(ans)
+                    
