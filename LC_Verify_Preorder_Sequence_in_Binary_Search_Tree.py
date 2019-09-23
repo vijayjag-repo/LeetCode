@@ -15,11 +15,11 @@ class Solution(object):
         
         """
         stack = []
-        min_val = float('-inf')
+        low = float('-inf')
         for p in preorder:
             if(p<low):
                 return(False)
             while(stack and p>stack[-1]):
                 low = stack.pop()
             stack.append(p)
-        return(False)
+        return(True)
