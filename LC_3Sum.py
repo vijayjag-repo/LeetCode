@@ -5,30 +5,25 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         if(len(nums)<3):
-            return([])
+            return []
         nums.sort()
-        final = set()
+        l = 0
+        r = len(nums)-1
         sums = 0
+        ans = set()
         
         for index,val in enumerate(nums):
-            i,j = index +1, len(nums)-1
-            while(i<j):
-                sums = val + nums[i] + nums[j]
+            if index > 0 and nums[index-1] == nums[index]:
+                continue
+            l,r = index+1,len(nums)-1
+            while(l<r):
+                sums = val+nums[l]+nums[r]
                 if(sums==0):
-                    final.add((val,nums[i],nums[j]))
-                    if(nums[i]==nums[j]):
-                        break
-                    i+=1
-                    j-=1
-                elif(sums>0):
-                    if(nums[i]==nums[j]):
-                        break
-                    j-=1
+                    ans.add((val,nums[l],nums[r]))
+                    l+=1
+                    r-=1
                 elif(sums<0):
-                    if(nums[i]==nums[j]):
-                        break
-                    i+=1
-        
-        return(list(final))
-            
-        
+                    l+=1
+                else:
+                    r-=1
+        return list(ans)
