@@ -3,6 +3,11 @@ class Solution(object):
         """
         :type s: str
         :rtype: str
+        
+        Approach:
+        
+        Expand around center.
+        Intuitive approach.
         """
         ans = ""
         def helper(s,beg,end):
