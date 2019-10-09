@@ -4,17 +4,18 @@ class Solution(object):
         :type n: int
         :type edges: List[List[int]]
         :rtype: int
+        
         Approach:
         
-        Union-find using rank. Nice solution
+        Union find by rank.
         """
+        parent = range(n)
+        rank = [0] * n
         def find(x):
-            if parent[x] != x:
-                parent[x] = find(parent[x])
-            return parent[x]
+            return parent[x] if parent[x]==x else find(parent[x])
             
-        def union(xy):
-            x, y = map(find, xy)
+        for e in edges:
+            x, y = map(find, e)
             if rank[x] < rank[y]:
                 parent[x] = y
             else:
@@ -22,9 +23,8 @@ class Solution(object):
                 if rank[x] == rank[y]:
                     rank[x] += 1
         
-        parent, rank = range(n), [0] * n
-        map(union, edges)
         return len({find(x) for x in parent})
+     
 
 
 class Solution(object):
