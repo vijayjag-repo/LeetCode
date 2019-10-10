@@ -4,6 +4,31 @@ class Solution(object):
         :type s: str
         :type k: int
         :rtype: str
+        Approach:
+        
+        Classic Stack.
+        """
+        stack = [['@',0]]
+        for char in s:
+            if(char==stack[-1][0]):
+                stack[-1][1]+=1
+                if(stack[-1][1]==k):
+                    stack.pop()
+            else:
+                stack.append([char,1])
+
+        ans = ""
+        for e in stack[1:]:
+            ans+=e[0]*e[1]
+        
+        return ans
+                 
+class Solution(object):
+    def removeDuplicates(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
         
         Approach:
         
