@@ -6,23 +6,28 @@ class Solution(object):
         
         Approach:
         
-        If lesser than next, subtract else add.
-        Simple approach.
-        """
-        if not s:
-            return 0
+        Simple idea is to traverse from the end and check if curr<prev.
+        If curr<prev, then we need to subtract curr from the ans.
+        Example: IV => you add V to ans since prev = 0 and V>prev.
+        Then you subtract I from ans because I<prev where prev = V.
+        Ans = 4.
         
+        Easy approach.
+        """
         d = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
         ans = 0
+        prev = 0
         
-        for i in range(len(s)-1):
-            if(d[s[i]]<d[s[i+1]]):
-                ans-=d[s[i]]
+        for i in range(len(s)-1,-1,-1):
+            curr = d[s[i]]
+            if(curr<prev):
+                ans -= curr
             else:
-                ans+=d[s[i]]
-            
-        return ans+d[s[-1]]
+                ans += curr
+            prev = d[s[i]]
         
+        return ans
+            
 
 class Solution(object):
     def romanToInt(self, s):
