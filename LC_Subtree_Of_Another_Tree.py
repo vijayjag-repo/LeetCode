@@ -4,6 +4,22 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # Approach: Convert to String using preorder traversal and check for substring match.
+    def isSubtree(self, s, t):
+        
+        def convert(p):
+            return "#" + str(p.val) + convert(p.left) + convert(p.right) if p else "@"
+        
+        return convert(t) in convert(s)
+#######
 from hashlib import sha256
 class Solution(object):
     def isSubtree(self, s, t):
