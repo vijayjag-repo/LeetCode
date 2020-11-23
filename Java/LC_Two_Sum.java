@@ -28,5 +28,28 @@ class Solution {
 /* 
 Solution 2
 
-TODO: <Add solution using hashmap>
+HashMap method. 
+Iterate through the array.
+Whenever you come across an element, add the element to the hashmap.
+Also, if the Hashmap already contains the <target - current element>, then we've found a match.
 */
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int[] ans = new int[2];
+        
+        for (int i=0; i<nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                ans[0] = i;
+                ans[1] = map.get(target - nums[i]);
+                break;
+            }
+            else {
+                map.put(nums[i],i);
+            }
+        }
+        
+        return ans;
+    }
+}
