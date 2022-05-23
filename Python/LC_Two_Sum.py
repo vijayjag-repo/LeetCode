@@ -5,14 +5,33 @@ class Solution:
         :type target: int
         :rtype: List[int]
         
-        Using a hashmap we can do it in O(n) time.
+        #1 - https://leetcode.com/problems/two-sum/
+        
+        Naive Approach
+        -----
+        
+        * Have couple of loops
+            * For each element in the outer loop, add element in the inner loop and check if that equals target
+            * Return corresponding indexes if the numbers add up
+        
+        Time complexity: O(n^2)
+        Space complexity: O(1)
+        
+        Optimal Approach
+        -----
+        * Have a dictionary/hashmap initialized 
+        * Run a loop 
+            * For each (target - element) not found in the dict, add element along with index to the dictionary
+            * If (target - element) is found, return corresponding indexes
+        
+        Time complexity: O(n)
+        Space complexity: O(n)
         """
-        if(len(nums)==1):
-            return(False)
-        new = {}
+        d = dict()
+        
         for i in range(len(nums)):
-            if(nums[i] in new):
-                return(new[nums[i]],i)
+            if (target - nums[i] in d):
+                return [d[target-nums[i]], i]
             else:
-                new[target-nums[i]] = i
+                d[nums[i]] = i
         
