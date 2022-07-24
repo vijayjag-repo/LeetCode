@@ -1,3 +1,3 @@
 # LeetCode
 
-LeetCode Solutions in Python/Java
+Solutions to leetcode problems in Python
