@@ -11,17 +11,13 @@ class Solution(object):
         :type root: TreeNode
         :rtype: TreeNode
         """
-        if(root==None):
-            return(None)
-        
-        default = root.left
-        root.left = root.right
-        root.right = default
-        
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-        return(root)
-    
+        if root:
+            temp = root.left
+            root.left = self.invertTree(root.right)
+            root.right = self.invertTree(temp)
+
+            return root
+
 # BFS - Queue
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -37,14 +33,14 @@ class Solution(object):
         :rtype: TreeNode
         """
         queue = collections.deque([(root)])
-        while(queue):
+        while queue:
             node = queue.popleft()
             if node:
                 node.left,node.right = node.right,node.left
                 queue.append(node.left)
                 queue.append(node.right)
-        return(root)
-    
+        return root
+
 # DFS - Stack
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -60,9 +56,9 @@ class Solution(object):
         :rtype: TreeNode
         """
         stack = [root]
-        while(stack):
+        while stack:
             node = stack.pop()
             if node:
                 node.left,node.right = node.right,node.left
                 stack.extend([node.left,node.right])
-        return(root)
+        return root

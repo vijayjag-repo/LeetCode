@@ -1,3 +1,29 @@
+## Solution 1: Using regex to remove special chars; Straightforward
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        s = re.sub(r'[^a-zA-Z0-9]', '', s)
+        s = s.lower()
+
+        if (len(s) == 0):
+            return True
+
+        x = 0
+        y = len(s) - 1
+
+        while(x <= y):
+            if (s[x] != s[y]):
+                return False
+            else:
+                x+=1
+                y-=1
+
+        return True
+
+
 class Solution(object):
     def isPalindrome(self, s):
         """
@@ -23,8 +49,8 @@ class Solution(object):
         :type s: str
         :rtype: bool
         Approach:
-        
-        Just avoid spaces and keep moving 
+
+        Just avoid spaces and keep moving
         """
         l = 0
         r = len(s)-1
