@@ -12,9 +12,8 @@ class Solution(object):
         :rtype: int
         """
         if not root:
-            return(0)
-        
+            return 0
+
         left = self.countNodes(root.left)
         right = self.countNodes(root.right)
-        return(left+right+1)
-        
+        return left + right + 1

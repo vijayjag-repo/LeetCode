@@ -6,7 +6,7 @@ class Solution:
         """
         even = 0
         odd = 0
-        
+
         for i in range(len(nums)):
             if(i%2==0):
                 even = max(even + nums[i],odd)
