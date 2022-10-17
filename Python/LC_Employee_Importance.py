@@ -10,35 +10,31 @@ class Employee(object):
         # the id of direct subordinates
         self.subordinates = subordinates
 """
+# DFS Approach
 class Solution(object):
-    def getImportance(self, employees, ID):
+    def getImportance(self, employees, id):
         """
-        :type employees: Employee
+        :type employees: List[Employee]
         :type id: int
         :rtype: int
-        
-        Approach:
-        
-        Have a dict to store all the employee information and recursively add them up if one particular employee has 
-        a subordinate and that employee has a subordinate and so on.
-        
+
+        Straightforward. If the class definition were to have a list of employees in subordinates, we needn't use dictionary.
+
+        Time complexity: O(m), where m = total number of subordinates under a given employee
+        Space complexity: O(n), where n = total number of employees (since we're storing all employees in a map)
         """
-        if not employees:
-            return(0)
+        def dfs(employee):
+            subordinates_importance = 0
+
+            if len(employee.subordinates) == 0:
+                return employee.importance
+            else:
+                for reportee_id in employee.subordinates:
+                    subordinates_importance += dfs(d[reportee_id])
+            return subordinates_importance + employee.importance
+
         d = dict()
-        sub = dict()
-        total = 0
-        
-        for emp in employees:
-            d[emp.id] = emp.importance
-            sub[emp.id] = emp.subordinates
-        
-        def calc_total(ID):
-            total = d[ID]
-            for sub_id in sub[ID]:
-                total += calc_total(sub_id)
-            return(total)
-        
-        return(calc_total(ID))
-                    
-                    
+        for employee in employees:
+            d[employee.id] = employee
+
+        return dfs(d[id])
